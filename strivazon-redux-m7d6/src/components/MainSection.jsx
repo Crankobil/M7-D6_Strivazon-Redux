@@ -2,9 +2,9 @@
 import { Link } from "react-router-dom";
 import { Col, Container, Row, Button, Table } from "react-bootstrap";
 import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from "react-icons/bs";
+    HiArrowSmRight,
+  HiArrowSmLeft,
+} from "react-icons/hi";
 import { connect } from "react-redux";
 import { addFavoriteCompanyAction } from "../actions";
 // import "./style.css";
@@ -32,20 +32,17 @@ const MainSection = ({
           ""
         ) : (
           <div>
-            <h2>Jobs</h2>
-
-            {/* <BsFillArrowLeftCircleFill onClick={setSkip((skip -= 10))} /> */}
+            <h5>Jobs Available</h5>
             <div className="d-flex flex-row justify-content-between">
-              <BsFillArrowLeftCircleFill
+              <HiArrowSmLeft
                 className="icon"
                 onClick={() => {
                   if (skip > 9) {
-                    console.log(skip);
                     setSkip((skip -= 10));
                   }
                 }}
               />
-              <BsFillArrowRightCircleFill
+              < HiArrowSmRight
                 className="icon"
                 onClick={() => setSkip((skip += 10))}
               />
@@ -53,28 +50,29 @@ const MainSection = ({
 <Table striped bordered hover size="sm">
   <thead>
     <tr>
-      <th>#</th>
       <th>Title</th>
       <th>Categories</th>
       <th>Company</th>
+      <th>Add to Favorites</th>
     </tr>
   </thead>
   {jobsArray.map((job) => (  
   <tbody key={job._id}>
     <tr>
       <td>{job.title}</td>
-      <td>{job.category}
-      <Link to={`/company-detail/${job.company_name}`}>
-            <td>{job.company_name}</td>
-    </Link>
-    <Button
+      <td>{job.category}</td>
+      <td>
+      <Link to={`/company-detail/${job.company_name}`}> </Link>
+            {job.company_name}</td>
+            <td><Button
         variant="success"
             onClick={() => addFavoriteCompany(job.company_name)}
             >
                       {" "}
                       ADD
-                    </Button>
-    </td>
+                    </Button></td>
+    
+    
     </tr>
   </tbody>))}
 
@@ -91,31 +89,7 @@ const MainSection = ({
                 <h2>Company</h2>
               </Col>
             </Row>
-            /* {jobsArray.map((job) => (
-              <Row key={job._id} className="border">
-                <Col xs={4} className="border pt-3">
-                  <h4> {job.title}</h4>
-                </Col>
-
-                <Col xs={4} className="border pt-3">
-                  <h4> {job.category}</h4>
-                </Col>
-                <Col xs={4} className="border pt-3">
-                  <div className="d-flex flex-row justify-content-between">
-                    <Link to={`/company-detail/${job.company_name}`}>
-                      <h4>{job.company_name}</h4>
-                    </Link>
-                    <Button
-                      variant="success"
-                      onClick={() => addFavoriteCompany(job.company_name)}
-                    >
-                      {" "}
-                      ADD
-                    </Button>
-                  </div>
-                </Col>
-              </Row>
-            ))} */
+            
           </div>
         )}
       </Container>

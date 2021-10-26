@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Favorites = ({ favorites, removeFavoriteCompany }) => {
   return (
-    <div className="mt-5 border">
+    <Button className="mt-5 border" variant="light">
       <h3 className="pt-1 text-center">Favorites</h3>
       {favorites.map((company, index) => (
         <Col className="border text-center p-2">
@@ -33,7 +33,7 @@ const Favorites = ({ favorites, removeFavoriteCompany }) => {
           </div>
         </Col>
       ))}
-    </div>
+    </Button>
   );
 };
 
